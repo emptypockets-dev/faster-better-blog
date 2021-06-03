@@ -2,22 +2,34 @@ import React from "react"
 import Layout from "../components/Layout"
 import Seo from '../components/Seo'
 import { graphql, Link } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 
-// markup
 const IndexPage = ({data}) => {
   const posts = data.allMdx.nodes
   return (
     <main>
       <Layout>
         <Seo title="Home" />
-        <h1>Faster<span>Better</span></h1>
-        <p>A place to share code with internet friends</p>
+        <StaticImage 
+          imgClassName="logo"
+          src="../images/ak-logo.png"
+          alt="Logo - Andrey Kondratyuk"
+          width={200}
+          height={150}
+        />
+        <h1>Hi, this is where I squeeze my mind grapes into code juice. Enjoy responsibly.</h1>
         <ul>
         {posts.map((post) => {
+          const image = getImage(post.frontmatter.image)
           return(
             <li>
               <Link to={post.slug} key={post.slug}>
-                <p>{post.frontmatter.title}</p>
+                <GatsbyImage 
+                  className="thumbnail"
+                  image={image} 
+                  alt={post.frontmatter.imageAlt} />
+                <h2>{post.frontmatter.title}</h2>
               </Link>
             </li>
           )
@@ -35,6 +47,12 @@ export const pageQuery = graphql`
         slug 
         frontmatter {
           title
+          image {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED)
+          }
+        }
+        imageAlt
         }
       }
     }

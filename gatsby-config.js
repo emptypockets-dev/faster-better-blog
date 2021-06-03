@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: "Faster Better Blog",
     description: "My digital garden",
-    twitter: 'theAndreyK'
+    twitter: 'theAndreyK',
+    siteUrl: 'https://fasterbetter.dev'
   },
   plugins: [
     "gatsby-plugin-gatsby-cloud",
@@ -23,6 +24,9 @@ module.exports = {
         prismPreset: `prism-okaidia`,
         preset: `@theme-ui/preset-funk`,
       }
-    }
+    },
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp'
   ],
 };
