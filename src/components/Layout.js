@@ -12,24 +12,32 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin:0;
     padding: 0px 5vw 5vw 5vw;
+    max-width: 1000px;
+    margin: 0 auto;
   }
   main {
       padding: 0px 0;
   }
   nav {
     padding: 30px 0 0 0;
+    a {
+      color: lightgray;
+      &:hover {
+        color: #000000;
+      }
+    }
   }
   .gatsby-image-wrapper img.logo {
     left: -10px;
   }
   h1 {
-      margin: 24px 0 60px 0;
+      margin: 16px 0 60px 0;
       font-size: 20px;
       font-weight: bold;
-      max-width: 420px;
+      max-width: 505px;
       color: lightslategrey;
       span {
-        color: lightgray;
+        color: #000;
       }
   }
   h2 {
@@ -37,12 +45,15 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     line-height:1.4;
     color: #1a1a1a;
-    padding: 0 16px 16px 16px;
+    padding: 0 16px 4px 16px;
   }
   p {
       margin-top:0;
       margin-bottom: 60px;
       color: darkslategrey;
+      padding: 0 16px 16px 16px;
+      font-size: 16px;
+      line-height: 1.4;
   }
   a {
       color: black;
@@ -75,6 +86,9 @@ const GlobalStyle = createGlobalStyle`
           h2 {
             color: #000000;
           }
+          p {
+            color: #000;
+          }
         }
         a {
           display: flex;
@@ -94,7 +108,8 @@ const GlobalStyle = createGlobalStyle`
         }
           p {
               margin-bottom:0;
-              color: black;
+              color: lightslategrey;
+              font-size: 14px;
           }
       }
   }
@@ -114,7 +129,7 @@ export default function Layout({ children }) {
       <GlobalStyle />
       <header>
           <nav>
-              <Link to="/">Home</Link>
+              <Link to="/">Digital Garden</Link>
           </nav>
       </header>
       <main>

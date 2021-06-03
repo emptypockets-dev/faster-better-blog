@@ -9,7 +9,7 @@ const IndexPage = ({data}) => {
   return (
     <main>
       <Layout>
-        <Seo title="Home" />
+        <Seo title="Digital Garden" />
         <StaticImage 
           imgClassName="logo"
           src="../images/ak-logo.png"
@@ -17,19 +17,20 @@ const IndexPage = ({data}) => {
           width={200}
           height={150}
         />
-        <h1>Hi, this is where I squeeze my mind grapes into code juice.</h1>
+        <h1><span>Welcome to my digital garden</span>—notes, resources, and code to help everyone build better digital things.</h1>
         <ul>
         {posts.map((post) => {
           const image = getImage(post.frontmatter.image)
+          console.log(post.frontmatter);
           return(
-            <li>
-              <Link to={post.slug} key={post.slug}>
+            <li key={post.slug}>
+              <Link to={post.slug} >
                 <GatsbyImage 
                   className="thumbnail"
                   image={image} 
                   alt={post.frontmatter.imageAlt} />
                 <h2>{post.frontmatter.title}</h2>
-                
+                <p>{post.frontmatter.description}</p>
               </Link>
             </li>
           )
@@ -47,6 +48,7 @@ export const pageQuery = graphql`
         slug 
         frontmatter {
           title
+          description
           image {
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED)
