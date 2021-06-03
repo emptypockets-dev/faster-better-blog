@@ -2,8 +2,7 @@ import React from "react"
 import Layout from "../components/Layout"
 import Seo from '../components/Seo'
 import { graphql, Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
-import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const IndexPage = ({data}) => {
   const posts = data.allMdx.nodes
