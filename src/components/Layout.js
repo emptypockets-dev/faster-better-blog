@@ -5,13 +5,13 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyle = createGlobalStyle`
   :root {
     --padding: 16px;
-    --border-radius: 8px;
+    --border-radius: 10px;
   }
   body {
     color: #000000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin:0;
-    padding: 0px 100px 100px 100px;
+    padding: 0px 5vw 5vw 5vw;
   }
   main {
       padding: 0px 0;
@@ -28,12 +28,16 @@ const GlobalStyle = createGlobalStyle`
       font-weight: bold;
       max-width: 420px;
       color: lightslategrey;
+      span {
+        color: lightgray;
+      }
   }
   h2 {
-    margin: 14px 0 0 0;
+    margin: 0 0 0 0;
     font-size: 16px;
     line-height:1.4;
     color: #1a1a1a;
+    padding: 0 16px 16px 16px;
   }
   p {
       margin-top:0;
@@ -43,22 +47,31 @@ const GlobalStyle = createGlobalStyle`
   a {
       color: black;
       text-decoration: none;
+      height:100%;
+      width:100%;
   }
   ul {
       list-style: none;
       margin-bottom: 100px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-gap: 20px;
       padding:0;
+      @media (min-width: 700px) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 30px;
+      }
       li {
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
         background-color: #e9ecef;
-        padding: var(--padding);
+        
         border-radius: var(--border-radius);
         border-bottom: 1px solid lightgray;        
         &:hover {
           background-color: #dee2e6;
+          .thumbnail {
+            
+          }
           h2 {
             color: #000000;
           }
@@ -70,10 +83,11 @@ const GlobalStyle = createGlobalStyle`
         }
         .thumbnail {
           background-color: white;
-          width:100%;
-          height: 50px;
           border-radius: var(--border-radius);
-          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3);
+          transition: 0.17s all linear;
+          height: 90px;
+          margin: 20px;
         }
         img {
           border-radius: var(--border-radius);

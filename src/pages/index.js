@@ -17,7 +17,7 @@ const IndexPage = ({data}) => {
           width={200}
           height={150}
         />
-        <h1>Hi, this is where I squeeze my mind grapes into code juice. Enjoy responsibly.</h1>
+        <h1>Hi, this is where I squeeze my mind grapes into code juice.</h1>
         <ul>
         {posts.map((post) => {
           const image = getImage(post.frontmatter.image)
