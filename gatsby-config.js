@@ -17,7 +17,6 @@ module.exports = {
         name: `posts`
       }
     },
-    'gatsby-plugin-mdx',
     {
       resolve: `gatsby-plugin-theme-ui`,
       options: {
@@ -27,6 +26,23 @@ module.exports = {
     },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp'
+    'gatsby-transformer-sharp',
+    `gatsby-remark-images`,
+    'gatsby-plugin-mdx',
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+              sizeByPixelDensity: true,
+            },
+          },
+        ],
+      },
+    },
   ],
+  
 };
