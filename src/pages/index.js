@@ -1,29 +1,45 @@
 import React from "react"
 import Layout from "../components/Layout"
+import Seo from '../components/Seo'
+import { graphql, Link } from 'gatsby'
 
 // markup
-const IndexPage = () => {
+const IndexPage = ({data}) => {
+  const posts = data.allMdx.nodes
   return (
     <main>
       <Layout>
-        <h1>Digital Garden</h1>
-        <p>Squeezing my mind grapes into code.</p>
+        <Seo title="Home" />
+        <h1>Faster<span>Better</span></h1>
+        <p>A place to share code with internet friends</p>
         <ul>
-          <li>
-            <p>
-              Hubspot local development with Webpack
-            </p>
-          </li>
-          <li>
-            <p>
-              Helpful resources to code all the Javascript
-            </p>
-          </li>
+        {posts.map((post) => {
+          return(
+            <li>
+              <Link to={post.slug} key={post.slug}>
+                <p>{post.frontmatter.title}</p>
+              </Link>
+            </li>
+          )
+        })}
         </ul>
       </Layout>
     </main>
   )
 }
+
+export const pageQuery = graphql`
+  query {
+    allMdx(sort: { fields: [frontmatter___title], order: ASC }) {
+      nodes {
+        slug 
+        frontmatter {
+          title
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
 
