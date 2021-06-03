@@ -29,6 +29,7 @@ const IndexPage = ({data}) => {
                   image={image} 
                   alt={post.frontmatter.imageAlt} />
                 <h2>{post.frontmatter.title}</h2>
+                
               </Link>
             </li>
           )

@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyle = createGlobalStyle`
   :root {
     --padding: 16px;
-    --border-radius: 16px;
+    --border-radius: 8px;
   }
   body {
     color: #000000;
@@ -23,16 +23,17 @@ const GlobalStyle = createGlobalStyle`
     left: -10px;
   }
   h1 {
-      margin: 15px 0 60px 0;
+      margin: 24px 0 60px 0;
       font-size: 20px;
       font-weight: bold;
       max-width: 420px;
+      color: lightslategrey;
   }
   h2 {
-    margin: 16px 0 0 0;
+    margin: 14px 0 0 0;
     font-size: 16px;
     line-height:1.4;
-    color: lightslategray;
+    color: #1a1a1a;
   }
   p {
       margin-top:0;
@@ -54,7 +55,8 @@ const GlobalStyle = createGlobalStyle`
         margin-bottom: 20px;
         background-color: #e9ecef;
         padding: var(--padding);
-        border-radius: var(--border-radius);        
+        border-radius: var(--border-radius);
+        border-bottom: 1px solid lightgray;        
         &:hover {
           background-color: #dee2e6;
           h2 {
@@ -64,18 +66,17 @@ const GlobalStyle = createGlobalStyle`
         a {
           display: flex;
           flex-direction:column;
-          align-items: center;
+          align-items: flex-start;
         }
         .thumbnail {
           background-color: white;
           width:100%;
-          height: 75px;
+          height: 50px;
           border-radius: var(--border-radius);
-          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
         }
         img {
-          /* height: 270px; */
-          /* width:100%; */
+          border-radius: var(--border-radius);
         }
           p {
               margin-bottom:0;
