@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin:0;
     padding: 0px 5vw 5vw 5vw;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   main {

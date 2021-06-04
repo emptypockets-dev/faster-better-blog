@@ -1,19 +1,21 @@
 --- 
-title: Colorful thumbnail React component
+title: Let's build a smart thumbnail react component from scratch
 image: ./thumb-4.png
 imageAlt: Gatsby
 description: Outlining the idea and then figuring out how to build it in React
-embeddedImagesLocal:
-  - concept.jpeg
+imageTwo: ./concept.jpeg
 ---
-
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+import concept from "./concept.jpeg"
+import conceptThumb from "./concept-thumb.jpeg"
+import Img from "/src/components/Img"
 
 ## Concept
 
-Use strips of color to represent the technologies mentioned in each post instead of using traditional thumbnail images. In the first version, the colors and technologies can be manually entered. In a future version, the smart thumbnail should be able to figure it out.
+Use strips of color to represent the technologies mentioned in each post. In the first version, the colors and technologies can be manually entered. 
 
-<img src="./concept.jpeg" />
+Can I pull the colors based on mentions in the post? 
+
+<Img src={conceptThumb} alt="concept"/>
 
 It definitely makes sense to build this in React. 
 

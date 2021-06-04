@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   article {
+      width: 100%;
     max-width: 1300px;
     margin: 100px auto;
     > .gatsby-image-wrapper {
@@ -26,7 +27,7 @@ const Container = styled.div`
     line-height: 1.5;
   }
   h1 {
-      font-size: 42px;
+      font-size: 50px;
       color: #000;
       margin: 0 auto 40px auto;
   }
@@ -40,6 +41,9 @@ const Container = styled.div`
   }
   ol {
       margin-bottom: 40px;
+  }
+  img {
+      margin: 20px 0;
   }
 `;
 
