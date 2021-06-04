@@ -14,7 +14,7 @@ const IndexPage = ({data}) => {
           imgClassName="logo"
           src="../images/logo-andrey-kondratyuk.jpeg"
           alt="Logo - Andrey Kondratyuk"
-          width={250}
+          width={167.5}
         />
         <h1><span>Welcome to my digital garden</span>—notes, resources, and code to help everyone build better digital things.</h1>
         <ul>

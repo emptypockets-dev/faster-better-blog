@@ -1,8 +1,31 @@
---- 
-title: Coding Lesson of the Day
+---
+title: Daily code snippets
 image: ./thumb-7.png
 imageAlt: Coding lesson
-description: Coding stuff
+description: Saving interesting lessons or snippets to remember them later. This is the good stuff! 
 ---
 
-Writing...
+### 🎒 backpack (closure)
+
+```js
+const anyFunction = () => {
+  let backpackItem = { data: 1 };
+  // everything here goes in the "backpack" 
+  return () => {
+    console.log((backpackItem.data += 1));
+    // the scope of anyFunction is kept
+    // in the backpack when called
+  };
+};
+
+const newFunction = anyFunction(); // assigned to the code that
+                                   // anyfunction returns and wears
+                                   // a "backpack" of the scope 
+                                   // where it was called
+newFunction(); // 2 // highlight-line
+newFunction(); // 3 // highlight-line
+// newFunction still has access to "backpack" 
+// when it is called!
+// a "backpack" of scope data gets saved into memory
+// on a nested object connected to the function
+```

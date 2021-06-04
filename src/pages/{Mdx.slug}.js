@@ -20,6 +20,10 @@ const Container = styled.div`
         max-width: 600px;
         margin: 0 auto 0 auto;
     }
+    pre {
+        max-width: 700px;
+        margin: 0 auto 0 auto;
+    }
   p {
     margin-bottom: 20px;
     padding: 0;
