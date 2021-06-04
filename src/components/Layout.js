@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import { createGlobalStyle } from "styled-components"
+import { StaticImage } from "gatsby-plugin-image"
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -33,9 +34,9 @@ const GlobalStyle = createGlobalStyle`
   }
   h1 {
       margin: 24px 0 60px 0;
-      font-size:25px;
+      font-size:29px;
       font-weight: bold;
-      max-width: 800px;
+      max-width: 750px;
       color: lightslategrey;
       span {
         color: #000;
@@ -138,7 +139,15 @@ export default function Layout({ children }) {
       <GlobalStyle />
       <header>
           <nav>
-              <Link to="/">Digital Garden</Link>
+          <Link to="/">
+              <StaticImage 
+                imgClassName="logo"
+                src="../images/ak-logo.png"
+                alt="Logo - Andrey Kondratyuk"
+                width={200}
+              />
+              </Link>
+              {/* <Link to="/">Digital Garden</Link> */}
           </nav>
       </header>
       <main>

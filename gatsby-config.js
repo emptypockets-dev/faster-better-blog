@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "Faster Better Blog",
-    description: "My digital garden",
+    description: "A growing collection of notes, ideas, and code to help build digital things better + faster.",
     twitter: 'theAndreyK',
     siteUrl: 'https://fasterbetter.dev'
   },

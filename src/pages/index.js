@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../components/Layout"
 import Seo from '../components/Seo'
 import { graphql, Link } from 'gatsby'
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const IndexPage = ({data}) => {
   const posts = data.allMdx.nodes
@@ -10,13 +10,8 @@ const IndexPage = ({data}) => {
     <main>
       <Layout>
         <Seo title="Digital Garden" />
-        <StaticImage 
-          imgClassName="logo"
-          src="../images/logo-andrey-kondratyuk.jpeg"
-          alt="Logo - Andrey Kondratyuk"
-          width={167.5}
-        />
-        <h1><span>Welcome to my digital garden</span>—a growing collection of notes, ideas, and code that help build better digital things.</h1>
+       
+        <h1><span>Welcome to my digital garden:</span> a growing collection of open notes, ideas, and code to help build digital things better + faster.</h1>
         <ul>
         {posts.map((post) => {
           const image = getImage(post.frontmatter.image)
