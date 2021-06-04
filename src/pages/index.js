@@ -16,7 +16,7 @@ const IndexPage = ({data}) => {
           alt="Logo - Andrey Kondratyuk"
           width={167.5}
         />
-        <h1><span>Welcome to my digital garden</span>—notes, resources, and code to help everyone build better digital things.</h1>
+        <h1><span>Welcome to my digital garden</span>—a growing collection of notes, ideas, and code that help build better digital things.</h1>
         <ul>
         {posts.map((post) => {
           const image = getImage(post.frontmatter.image)

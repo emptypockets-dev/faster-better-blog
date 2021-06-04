@@ -33,9 +33,9 @@ const GlobalStyle = createGlobalStyle`
   }
   h1 {
       margin: 24px 0 60px 0;
-      font-size: 20px;
+      font-size:25px;
       font-weight: bold;
-      max-width: 505px;
+      max-width: 800px;
       color: lightslategrey;
       span {
         color: #000;
