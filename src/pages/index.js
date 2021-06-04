@@ -12,10 +12,9 @@ const IndexPage = ({data}) => {
         <Seo title="Digital Garden" />
         <StaticImage 
           imgClassName="logo"
-          src="../images/ak-logo.png"
+          src="../images/logo-andrey-kondratyuk.jpeg"
           alt="Logo - Andrey Kondratyuk"
-          width={200}
-          height={150}
+          width={250}
         />
         <h1><span>Welcome to my digital garden</span>—notes, resources, and code to help everyone build better digital things.</h1>
         <ul>

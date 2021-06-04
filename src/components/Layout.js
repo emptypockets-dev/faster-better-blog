@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
   nav {
     padding: 30px 0 0 0;
+    margin-bottom: 60px;
     a {
       color: lightgray;
       &:hover {
@@ -28,10 +29,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   .gatsby-image-wrapper img.logo {
-    left: -10px;
+    /* left: -10px; */
   }
   h1 {
-      margin: 16px 0 60px 0;
+      margin: 24px 0 60px 0;
       font-size: 20px;
       font-weight: bold;
       max-width: 505px;
@@ -69,7 +70,15 @@ const GlobalStyle = createGlobalStyle`
       grid-gap: 20px;
       padding:0;
       @media (min-width: 700px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 30px;
+      }
+      @media (min-width: 900px) {
         grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 30px;
+      }
+      @media (min-width: 1200px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 30px;
       }
       li {

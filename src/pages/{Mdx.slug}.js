@@ -29,7 +29,7 @@ const Container = styled.div`
   h1 {
       font-size: 50px;
       color: #000;
-      margin: 0 auto 40px auto;
+      margin: 0px auto 40px auto;
   }
   h2, h3 {
       margin: 0 auto 20px auto;
