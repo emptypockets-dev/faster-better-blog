@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {MDXRenderer} from 'gatsby-plugin-mdx';
 import Layout from '../components/Layout';
-import {GatsbyImage, getImage, getSrc} from 'gatsby-plugin-image';
+import {getSrc} from 'gatsby-plugin-image';
 import Seo from '../components/Seo';
 import styled from 'styled-components';
 import Tags from '../components/Tags';
@@ -60,7 +60,6 @@ const Container = styled.div`
 
 const BlogPostPage = ({data}) => {
   const post = data.mdx;
-  const image = getImage(post.frontmatter.image);
   const seoImage = getSrc(post.frontmatter.image);
   const tags = post.frontmatter.tags;
   // console.log(tags);

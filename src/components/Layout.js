@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
   }
   h2 {
     margin: 0 0 0 0;
-    font-size: 16px;
+    font-size: 18px;
     line-height:1.4;
     color: #000;
     padding: 0 16px 4px 16px;

@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 import {graphql, Link} from 'gatsby';
-import {GatsbyImage, getImage} from 'gatsby-plugin-image';
 import Tags from '../components/Tags';
 
 const IndexPage = ({data}) => {
@@ -18,7 +17,6 @@ const IndexPage = ({data}) => {
         </h1>
         <ul>
           {posts.map((post) => {
-            const image = getImage(post.frontmatter.image);
             const tags = post.frontmatter.tags;
             // console.log(tags);
             return (
