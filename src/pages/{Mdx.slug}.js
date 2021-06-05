@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import {getSrc} from 'gatsby-plugin-image';
 import Seo from '../components/Seo';
 import styled from 'styled-components';
-import Tags from '../components/Tags';
+import TagsThumbnail from '../components/TagsThumbnail';
 
 const Container = styled.div`
   article {
@@ -21,7 +21,6 @@ const Container = styled.div`
   h2,
   h3,
   p,
-  ul,
   ol {
     max-width: 600px;
     margin: 0 auto 0 auto;
@@ -56,6 +55,10 @@ const Container = styled.div`
   img {
     margin: 20px 0;
   }
+  .tags-list {
+    height: 200px;
+    margin-bottom: 60px;
+  }
 `;
 
 const BlogPostPage = ({data}) => {
@@ -74,7 +77,7 @@ const BlogPostPage = ({data}) => {
             imageAlt={post.frontmatter.imageAlt}
           />
           {/* <GatsbyImage image={image} alt={post.frontmatter.imageAlt} /> */}
-          {tags && <Tags tags={tags} />}
+          {tags && <TagsThumbnail tags={tags} />}
           <h1>{post.frontmatter.title}</h1>
           <MDXRenderer>{post.body}</MDXRenderer>
         </article>

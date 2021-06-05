@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 import {graphql, Link} from 'gatsby';
-import Tags from '../components/Tags';
+import TagsThumbnail from '../components/TagsThumbnail';
 
 const IndexPage = ({data}) => {
   const posts = data.allMdx.nodes;
@@ -26,7 +26,7 @@ const IndexPage = ({data}) => {
                   className="thumbnail"
                   image={image} 
                   alt={post.frontmatter.imageAlt} /> */}
-                  <Tags tags={tags} />
+                  <TagsThumbnail tags={tags} />
                   <h2>{post.frontmatter.title}</h2>
                   <p>{post.frontmatter.description}</p>
                 </Link>
