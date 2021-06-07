@@ -27,7 +27,7 @@ const Container = styled.div`
   }
   pre {
     max-width: 700px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 60px auto;
   }
   p {
     margin-bottom: 20px;
