@@ -26,6 +26,7 @@ const IndexPage = ({data}) => {
           <span class="webpack">webpack</span>
           <span class="babel">babel</span>
           <span class="javascript">javascript</span>
+          <span class="random">testing</span>
         </h2>
         <ul>
           {posts.map((post) => {
