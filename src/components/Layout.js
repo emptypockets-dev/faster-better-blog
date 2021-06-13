@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
     /* left: -10px; */
   }
   h1 {
-      margin: 0px 0 60px 0;
+      margin: 0px 0 0px 0;
       font-size:27px;
       font-weight: bold;
       max-width: 700px;
@@ -55,7 +55,57 @@ const GlobalStyle = createGlobalStyle`
       span {
         color: #000;
       }
+      + h2 {
+        color: lightslategray;
+        padding: 0;
+        margin-top: 16px;
+        font-weight: normal;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        span {
+          font-size: 0.7rem;
+          padding: 0.3rem;
+          border-radius: 5px;
+          display: inline-block;
+          margin-right: 0.5rem;
+          color: white;
+          line-height:1;
+          position: relative;
+          top: -2px;
+          &.hubspot {
+            background-color: #eb5e28;
+          }
+          &.procreate {
+            background-color: #f27f34;
+          }
+          &.react {
+            background-color: #f9a03f;
+          }
+          &.gatsby {
+            background-color: #f6b049;
+          }
+          &.html {
+            background-color: #f3c053;
+          }
+          &.scss {
+            background-color: #a1c349;
+          }
+          &.webpack {
+            background-color: #94b33d;
+          }
+          &.babel {
+            background-color: #87a330;
+          }
+          &.javascript {
+            background-color: #799431;
+          }
+          &.random {
+            background-color: #6a8532;
+          }
+        }
+      }
   }
+  
   h2 {
     margin: 0 0 0 0;
     font-size: 18px;
@@ -80,6 +130,7 @@ const GlobalStyle = createGlobalStyle`
   ul {
       list-style: none;
       margin-bottom: 100px;
+      margin-top: 70px;
       display: grid;
       grid-template-columns: 1fr;
       grid-gap: 20px;

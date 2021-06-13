@@ -28,6 +28,7 @@ const Container = styled.div`
   pre {
     max-width: 700px;
     margin: 0 auto 60px auto;
+    overflow-x: scroll;
   }
   p {
     margin-bottom: 20px;
@@ -38,7 +39,7 @@ const Container = styled.div`
   h1 {
     font-size: 50px;
     color: #000;
-    margin: 0px auto 40px auto;
+    margin: 100px auto 70px auto;
   }
   h2,
   h3 {
