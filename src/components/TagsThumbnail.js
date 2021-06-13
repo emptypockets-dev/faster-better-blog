@@ -86,7 +86,7 @@ export default function TagsThumbnail({tags, size}) {
   ));
   const classes = classNames({
     'tags-list': true,
-    small: size == 'small',
+    small: size === 'small',
   });
   return (
     <Container>

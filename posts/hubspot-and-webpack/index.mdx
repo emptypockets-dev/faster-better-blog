@@ -7,3 +7,138 @@ tags: ['hubspot', 'react', 'html', 'scss', 'webpack', 'babel', 'javascript']
 ---
 
 In writing...
+
+```js
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HubSpotAutoUploadPlugin = require('@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const entryPlus = require('webpack-entry-plus');
+const glob = require('glob');
+
+const entryFiles = [
+  {
+    entryFiles: glob.sync('./src/modules/**/*/module.js'),
+    outputName(item) {
+      return item.replace('./src/', '').replace('.js', '');
+    },
+  },
+  {
+    entryFiles: glob.sync('./src/modules/universal/**/*/module.js'),
+    outputName(item) {
+      return item.replace('./src/', '').replace('.js', '');
+    },
+  },
+  {
+    entryFiles: glob.sync('./src/templates/**/*.js'),
+    outputName(item) {
+      return item.replace('./src/', '').replace('.js', '');
+    },
+  },
+  {
+    entryFiles: ['./src/index.js'],
+    outputName(item) {
+        return item.replace('./src/', 'global/').replace('.js', '');
+      },
+  },
+];
+
+const hubspotConfig = ({ portal, autoupload } = {}) => {
+  return {
+    target: 'web',
+    entry: entryPlus(entryFiles),
+    output: {
+      filename: '[name].js',
+      clean: true,
+    },
+    optimization: {
+      minimize: false,
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
+          },
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                url: false,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  plugins: [['postcss-preset-env', {}]],
+                },
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sassOptions: {
+                  outputStyle: 'expanded',
+                },
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+            },
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new HubSpotAutoUploadPlugin({
+        portal,
+        autoupload,
+        src: 'dist',
+        dest: 'your-site-in-hubspot',
+      }),
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: 'src/images', to: 'images' },
+          { from: 'src/layouts', to: 'layouts' },
+          { from: 'src/global-partials', to: 'global-partials' },
+          {
+            from: 'src/modules',
+            to: 'modules',
+            globOptions: {
+              ignore: ['**/*.scss'],
+            },
+          },
+          {
+            from: 'src/templates',
+            to: 'templates',
+            globOptions: {
+              ignore: ['**/*.scss'],
+            },
+          },
+          { from: 'src/theme.json', to: 'theme.json' },
+          { from: 'src/fields.json', to: 'fields.json' },
+        ],
+      }),
+    ],
+  };
+};
+
+module.exports = [hubspotConfig];
+```

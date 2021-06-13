@@ -26,7 +26,7 @@ const Container = styled.div`
     margin: 0 auto 0 auto;
   }
   pre {
-    max-width: 700px;
+    max-width: 1037px;
     margin: 0 auto 60px auto;
     overflow-x: scroll;
   }
