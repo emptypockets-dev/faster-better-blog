@@ -16,7 +16,6 @@ const IndexPage = ({data}) => {
           ideas, and code to help build things faster + better.
         </h1>
         <h2>
-          Featuring:&nbsp;
           <span class="hubspot">hubspot</span>
           <span class="procreate">procreate</span>
           <span class="react">react</span>
