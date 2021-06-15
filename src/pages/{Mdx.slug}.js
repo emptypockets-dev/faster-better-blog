@@ -53,6 +53,15 @@ const Container = styled.div`
   ol {
     margin-bottom: 40px;
   }
+  ul.parts-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+    li {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
   img {
     margin: 20px 0;
   }

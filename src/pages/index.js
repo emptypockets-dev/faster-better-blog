@@ -16,6 +16,7 @@ const IndexPage = ({ data }) => {
           ideas, and code to help build things faster + better.
         </h1>
         <h2>
+          Filters coming soonish:&nbsp;
           <span class='hubspot'>hubspot</span>
           <span class='procreate'>procreate</span>
           <span class='react'>react</span>
@@ -24,8 +25,7 @@ const IndexPage = ({ data }) => {
           <span class='scss'>scss</span>
           <span class='webpack'>webpack</span>
           <span class='babel'>babel</span>
-          <span class='javascript'>javascript</span>
-          <span class='random'>testing</span>
+          <span class='javascript'>JS</span>
         </h2>
         <ul>
           {posts.map((post) => {

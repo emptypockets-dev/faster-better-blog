@@ -140,9 +140,11 @@ const GlobalStyle = createGlobalStyle`
         grid-template-columns: 1fr 1fr;
         grid-gap: 30px;
       }
-      @media (min-width: 900px) {
+      ${
+        "" /* @media (min-width: 1400px) {
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 30px;
+      } */
       }
       li {
         background-color: #e9ecef;
