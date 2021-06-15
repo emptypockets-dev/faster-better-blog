@@ -48,7 +48,7 @@ https://github.com/emptypockets-dev/hubspot-with-webpack
 <p>
   Use the Hubspot CLI to create a new project. Follow the Hubspot docs
   <a href='https://github.com/HubSpot/cms-theme-boilerplate'> here</a>. Make sure
-  you generally know what's goin on, then run this command in Terminal—inside of
+  you generally know what's going on, then run this command in Terminal—inside of
   your project folder.
 </p>
 
@@ -66,6 +66,15 @@ hs init
 ```
 
 <p>
+  While you're at it, you'll eventually need a package.json file so run `npm
+  init` to create one:
+</p>
+
+```js
+    npm init
+```
+
+<p>
   <em>Note</em>: don't fetch an existing project. We're going to upload our new
   local project to Hubspot.
 </p>
@@ -73,7 +82,7 @@ hs init
 <h2>Install dependencies</h2>
 
 ```js
-npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-cms-plugins clean-webpack-plugin
+npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-cms-plugins
 ```
 
 <ul class='parts-list'>
@@ -81,20 +90,16 @@ npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-
   <li>[x] webpack-cli</li>
   <li>[x] copy-webpack-plugin</li>
   <li>[x] @hubspot/webpack-cms-plugins</li>
-  <li>[x] clean-webpack-plugin</li>
 </ul>
 
-```js
-    npm init
-```
-
-<h2>Create a MINIMAL webpack.config.js</h2>
+<h2>Create a webpack.config.js</h2>
 <p>
-  Modify the&nbsp;
+  Hubspot provides an&nbsp;
   <a href='https://www.npmjs.com/package/@hubspot/webpack-cms-plugins'>
     example&nbsp;
   </a>
-  webpack.config.js to support Webpack 5 + the required plugin updates
+  but at the momen tit needs some tweaks to support Webpack 5 + the required
+  plugin updates
 </p>
 
 ```js
@@ -129,10 +134,13 @@ module.exports = ({ account, autoupload }) => ({
 
 <p>
   The above webpack config is the <em>minimum</em> setup needed for the Hubspot
-  Autoupload plugin to work
+  Autoupload plugin to work.
 </p>
 
-<p>Add these scripts to your package.json file</p>
+<p>
+  Add these scripts to your package.json file so that you don't have to keep
+  typing webpack --watch --mode etc.
+</p>
 
 ```
  "scripts": {
@@ -140,6 +148,10 @@ module.exports = ({ account, autoupload }) => ({
         "build-dev": "webpack --mode development",
         "build-prod": "webpack --mode production"
     }
+```
+
+```
+npm start
 ```
 
 <p>

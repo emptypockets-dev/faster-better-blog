@@ -58,8 +58,16 @@ const Container = styled.div`
     flex-direction: column;
     max-width: 600px;
     margin: 0 auto 60px auto;
+    border: 0;
+    &:hover {
+      border: 0;
+    }
     li {
       background-color: rgba(255, 255, 255, 0);
+      border: 0;
+      &:hover {
+        border: 0;
+      }
     }
   }
   img {
