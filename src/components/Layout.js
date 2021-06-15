@@ -1,7 +1,7 @@
-import {Link} from 'gatsby';
-import React from 'react';
-import {createGlobalStyle} from 'styled-components';
-import {StaticImage} from 'gatsby-plugin-image';
+import { Link } from "gatsby";
+import React from "react";
+import { createGlobalStyle } from "styled-components";
+import { StaticImage } from "gatsby-plugin-image";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -184,19 +184,20 @@ const GlobalStyle = createGlobalStyle`
       border-radius: 8px;
       font-size: 16px;
       line-height: 24px;
+      
   }
 `;
-export default function Layout({children}) {
+export default function Layout({ children }) {
   return (
     <React.Fragment>
       <GlobalStyle />
       <header>
         <nav>
-          <Link to="/">
+          <Link to='/'>
             <StaticImage
-              imgClassName="logo"
-              src="../images/ak-logo.png"
-              alt="Logo - Andrey Kondratyuk"
+              imgClassName='logo'
+              src='../images/ak-logo.png'
+              alt='Logo - Andrey Kondratyuk'
               width={220}
             />
           </Link>

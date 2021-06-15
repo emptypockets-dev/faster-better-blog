@@ -1,11 +1,11 @@
-import React from 'react';
-import {graphql} from 'gatsby';
-import {MDXRenderer} from 'gatsby-plugin-mdx';
-import Layout from '../components/Layout';
-import {getSrc} from 'gatsby-plugin-image';
-import Seo from '../components/Seo';
-import styled from 'styled-components';
-import TagsThumbnail from '../components/TagsThumbnail';
+import React from "react";
+import { graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import Layout from "../components/Layout";
+import { getSrc } from "gatsby-plugin-image";
+import Seo from "../components/Seo";
+import styled from "styled-components";
+import TagsThumbnail from "../components/TagsThumbnail";
 
 const Container = styled.div`
   article {
@@ -26,8 +26,8 @@ const Container = styled.div`
     margin: 0 auto 0 auto;
   }
   pre {
-    max-width: 1037px;
-    margin: 0 auto 60px auto;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
     overflow-x: scroll;
   }
   p {
@@ -62,7 +62,7 @@ const Container = styled.div`
   }
 `;
 
-const BlogPostPage = ({data}) => {
+const BlogPostPage = ({ data }) => {
   const post = data.mdx;
   const seoImage = getSrc(post.frontmatter.image);
   const tags = post.frontmatter.tags;
@@ -89,7 +89,7 @@ const BlogPostPage = ({data}) => {
 
 export const query = graphql`
   query BlogPostById($id: String) {
-    mdx(id: {eq: $id}) {
+    mdx(id: { eq: $id }) {
       frontmatter {
         title
         image {

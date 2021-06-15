@@ -3,142 +3,94 @@ title: Webpack config for Hubspot
 image: ./thumb-2.png
 imageAlt: Webpack Icon
 description: An up-to-date webpack config that works in Hubspot
-tags: ['hubspot', 'react', 'html', 'scss', 'webpack', 'babel', 'javascript']
+tags: ["hubspot", "react", "html", "scss", "webpack", "babel", "javascript"]
 ---
 
-In writing...
+If you want to skip all the fun, here's all of the code for part 1
+
+```
+https://github.com/emptypockets-dev/hubspot-with-webpack
+```
+
+The goal for part 1 is to upgrade the standard Hubspot boilerplate to include the Hubspot Autoupload plugin (to automagically sync a sandbox site) and setup the latest version of Webpack to internet better in the future.
+
+<h2>Get all the required Hubspot stuff ready</h2>
+<p>
+  At the moment, I'll assume that you are familiar with Hubspot. You will need
+  Node.js, the Hubspot CLI installed globally and have already setup a developer
+  account.
+</p>
+
+<h2>Just the boilerplate</h2>
+<p>
+  Use the Hubspot CLI to create a new project and configure it for local
+  development. Hubspot has pretty great explanations for these steps. Generally,
+  you want to run these commands in terminal—inside of your project folder
+</p>
+
+```
+    hs create website-theme <the-name-of-your-new-project>
+```
+
+<p>
+  Then configure the project by running `hs init` in Terminal and copying your
+  key.
+</p>
+
+<p>
+  Note: don't fetch an existing project. We're going to upload our new local
+  project to Hubspot.
+</p>
+
+<h2>Install dependencies</h2>
 
 ```js
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HubSpotAutoUploadPlugin = require('@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const entryPlus = require('webpack-entry-plus');
-const glob = require('glob');
+npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-cms-plugins babel-loader
+```
 
-const entryFiles = [
-  {
-    entryFiles: glob.sync('./src/modules/**/*/module.js'),
-    outputName(item) {
-      return item.replace('./src/', '').replace('.js', '');
-    },
+<h2>Create a webpack config file</h2>
+<p>
+  Modify webpack.config.js to support the latest version of Webpack + updated
+  plugins
+</p>
+
+```js
+const HubSpotAutoUploadPlugin = require("@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
+module.exports = ({ account, autoupload = true }) => ({
+  entry: "./src/index.js",
+  output: {
+    filename: "js/main.js",
   },
-  {
-    entryFiles: glob.sync('./src/modules/universal/**/*/module.js'),
-    outputName(item) {
-      return item.replace('./src/', '').replace('.js', '');
-    },
-  },
-  {
-    entryFiles: glob.sync('./src/templates/**/*.js'),
-    outputName(item) {
-      return item.replace('./src/', '').replace('.js', '');
-    },
-  },
-  {
-    entryFiles: ['./src/index.js'],
-    outputName(item) {
-        return item.replace('./src/', 'global/').replace('.js', '');
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
       },
-  },
-];
-
-const hubspotConfig = ({ portal, autoupload } = {}) => {
-  return {
-    target: 'web',
-    entry: entryPlus(entryFiles),
-    output: {
-      filename: '[name].js',
-      clean: true,
-    },
-    optimization: {
-      minimize: false,
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                url: false,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: {
-                  plugins: [['postcss-preset-env', {}]],
-                },
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sassOptions: {
-                  outputStyle: 'expanded',
-                },
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(svg)$/,
-          use: [
-            {
-              loader: 'url-loader',
-            },
-          ],
-        },
-      ],
-    },
-    plugins: [
-      new HubSpotAutoUploadPlugin({
-        portal,
-        autoupload,
-        src: 'dist',
-        dest: 'your-site-in-hubspot',
-      }),
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-      }),
-      new CopyWebpackPlugin({
-        patterns: [
-          { from: 'src/images', to: 'images' },
-          { from: 'src/layouts', to: 'layouts' },
-          { from: 'src/global-partials', to: 'global-partials' },
-          {
-            from: 'src/modules',
-            to: 'modules',
-            globOptions: {
-              ignore: ['**/*.scss'],
-            },
-          },
-          {
-            from: 'src/templates',
-            to: 'templates',
-            globOptions: {
-              ignore: ['**/*.scss'],
-            },
-          },
-          { from: 'src/theme.json', to: 'theme.json' },
-          { from: 'src/fields.json', to: 'fields.json' },
-        ],
-      }),
     ],
-  };
-};
-
-module.exports = [hubspotConfig];
+  },
+  plugins: [
+    new HubSpotAutoUploadPlugin({
+      autoupload,
+      account,
+      src: "dist",
+      dest: "theme-with-webpack",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/css", to: "css" },
+        { from: "src/images", to: "images" },
+        { from: "src/modules", to: "modules" },
+        { from: "src/templates", to: "templates" },
+        { from: "src/theme.json", to: "theme.json" },
+        { from: "src/fields.json", to: "fields.json" },
+      ],
+    }),
+  ],
+});
 ```
