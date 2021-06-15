@@ -28,7 +28,7 @@ tags: ["hubspot", "react", "html", "scss", "webpack", "babel", "javascript"]
 
 <p>If you want to skip all the fun, here's the code for part 1:</p>
 
-```html
+```
 https://github.com/emptypockets-dev/hubspot-with-webpack
 ```
 
@@ -47,9 +47,9 @@ https://github.com/emptypockets-dev/hubspot-with-webpack
 <h2>Just the boilerplate</h2>
 <p>
   Use the Hubspot CLI to create a new project. Follow the Hubspot docs
-  <a href='https://github.com/HubSpot/cms-theme-boilerplate'> here</a>. Make sure
-  you generally know what's going on, then run this command in Terminal—inside of
-  your project folder.
+  <a href='https://github.com/HubSpot/cms-theme-boilerplate'>&nbsp;here</a>. Make
+  sure you generally know what's going on, then run this command in Terminal—inside
+  of your project folder.
 </p>
 
 ```
@@ -98,7 +98,7 @@ npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-
   <a href='https://www.npmjs.com/package/@hubspot/webpack-cms-plugins'>
     example&nbsp;
   </a>
-  but at the momen tit needs some tweaks to support Webpack 5 + the required
+  but at the moment it needs some tweaks to support Webpack 5 + the related
   plugin updates
 </p>
 
@@ -155,8 +155,24 @@ npm start
 ```
 
 <p>
-  Run the start script to kickoff webpack and autoupload. Now, as you save
-  files, your site will automatically update with the latest changes
+  Run the start script to kickoff webpack and autoupload. The script runs
+  webpack, watches for changes, sets the mode to development, and passes in a
+  "autoupload" environment variable that defaults to true. The webpack config is
+  also expecting a "account" environment variable but that is automatically
+  passed in via your hubspot.config.yml file so it's not needed (but you can add
+  it if you want).
+</p>
+
+<p>
+  As you save files in `src`, your `dist/staging` site will automatically update
+  with the latest changes
 </p>
 
 <p>In part 2, we're going to add Babel and setup lint.</p>
+
+<h2>Related ideas</h2>
+<p>
+  A way to provide feedback about specific parts of this "guide" would be really
+  helpful. I wonder if I can build a confusing indicator of some sort? Any
+  ideas?
+</p>
