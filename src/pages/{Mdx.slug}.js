@@ -67,7 +67,7 @@ const Container = styled.div`
     max-width: 600px;
     margin: 0 auto 60px auto;
     border: 0;
-    grid-gap: 20px;
+    grid-gap: 0;
     &:hover {
       border: 0;
     }
@@ -76,6 +76,7 @@ const Container = styled.div`
       border: 0;
       display: block;
       padding-left: 20px;
+      margin-bottom: 20px;
       b {
         margin-right: 20px;
         display: block;

@@ -270,14 +270,7 @@ module.exports = ({ account, autoupload }) => ({
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: [
-                  [
-                    "autoprefixer",
-                    {
-                      // Options
-                    },
-                  ],
-                ],
+                plugins: [["autoprefixer"]],
               },
             },
           },
@@ -345,7 +338,7 @@ npm install --save-dev wrapper-webpack-plugin
 ```
 
 ```js
-in webpack.config.js
+/* in webpack.config.js */
  plugins: [
         ...other plugins
         new WrapperPlugin({
