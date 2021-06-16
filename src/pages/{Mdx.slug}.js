@@ -35,6 +35,9 @@ const Container = styled.div`
     padding: 0;
     font-size: 20px;
     line-height: 1.5;
+    a {
+      color: #4285f4;
+    }
   }
   h1 {
     font-size: 50px;

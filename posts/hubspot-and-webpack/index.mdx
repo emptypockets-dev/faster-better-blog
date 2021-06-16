@@ -22,7 +22,7 @@ tags: ["hubspot", "react", "html", "scss", "webpack", "babel", "javascript"]
 </ul>
 
 <p>
-  If you want just want to copy a minimal webpack.config.js file jump to the{" "}
+  If you just want to copy a minimal webpack.config.js file skip to the{" "}
   <a href='https://github.com/emptypockets-dev/hubspot-with-webpack'>
     Github repo
   </a>
@@ -53,18 +53,17 @@ npm install -g @hubspot/cli@latest
     &nbsp;Hubspot docs
   </a> if you get stuck at this point.
 </p>
-<p>
-  <em>Note</em>: don't fetch an existing project. Build a new, basic setup and
-  then apply bits of it to your other projects.
-</p>
 
 ```
-hs create website-theme <cool-project-name>
+mkdir hubspot && cd hubspot
+hs create website-theme src/<cool-project-name>
 ```
 
 <p>
-  Configure your project for local development by running `hs-init` in Terminal.
-  Follow the written instructions (copy + paste your key).
+  Run "hs init" to create a "hubspot.config.yml file" and connect your portal
+  (almost definitely a separate sandbox or development portal that you already
+  setup <a href='https://offers.hubspot.com/free-cms-developer-sandbox'>here</a>
+  ). Follow the written instructions (copy + paste your key when prompted).
 </p>
 
 ```
@@ -73,7 +72,7 @@ hs create website-theme <cool-project-name>
 
 <p>
   While you're at it, you'll eventually need a package.json file—now is a good
-  time to run `npm init` to create one:
+  time to create one:
 </p>
 
 ```
@@ -105,12 +104,8 @@ npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-
 
 <h3>Just a webpack config file</h3>
 <p>
-  Hubspot provides an&nbsp;
-  <a href='https://www.npmjs.com/package/@hubspot/webpack-cms-plugins'>
-    example&nbsp;
-  </a>
-  but at the moment it needs some tweaks to support Webpack 5 + recent plugin
-  updates
+  Create a file name webpack.config.js in your root directory. Copy pasta the
+  code below.
 </p>
 
 ```js
