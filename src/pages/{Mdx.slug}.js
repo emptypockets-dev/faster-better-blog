@@ -53,18 +53,31 @@ const Container = styled.div`
   ol {
     margin-bottom: 40px;
   }
+  ul {
+    margin: 40px auto 40px auto;
+    max-width: 600px;
+    display: block;
+  }
   ul.parts-list {
     display: flex;
     flex-direction: column;
     max-width: 600px;
     margin: 0 auto 60px auto;
     border: 0;
+    grid-gap: 20px;
     &:hover {
       border: 0;
     }
     li {
       background-color: rgba(255, 255, 255, 0);
       border: 0;
+      display: block;
+      padding-left: 20px;
+      b {
+        margin-right: 20px;
+        display: block;
+        float: left;
+      }
       &:hover {
         border: 0;
       }

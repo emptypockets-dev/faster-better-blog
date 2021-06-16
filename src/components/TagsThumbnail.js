@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import classNames from 'classnames';
+import React from "react";
+import styled from "styled-components";
+import classNames from "classnames";
 
 const Container = styled.div`
   width: 100%;
@@ -12,7 +12,7 @@ const Container = styled.div`
     rgba(0, 0, 0, 0.09) 0px 32px 16px;
   max-width: calc(100% - 32px);
 
-  .tags-list {
+  ul.tags-list {
     &.small {
       margin-top: 0;
       li {
@@ -27,6 +27,7 @@ const Container = styled.div`
     margin-bottom: 0;
     overflow: hidden;
     border-radius: 10px;
+    max-width: initial;
     li {
       border-radius: 0;
       min-height: 120px;
@@ -78,15 +79,15 @@ const Container = styled.div`
   }
 `;
 
-export default function TagsThumbnail({tags, size}) {
+export default function TagsThumbnail({ tags, size }) {
   const listItems = tags.map((tag) => (
     <li key={tag} className={tag}>
       {tag}
     </li>
   ));
   const classes = classNames({
-    'tags-list': true,
-    small: size === 'small',
+    "tags-list": true,
+    small: size === "small",
   });
   return (
     <Container>

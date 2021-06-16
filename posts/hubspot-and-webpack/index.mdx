@@ -1,5 +1,5 @@
 ---
-title: Webpack config for Hubspot
+title: A damn near perfect webpack and hubspot setup (part one)
 image: ./thumb-2.png
 imageAlt: Webpack Icon
 description: An up-to-date webpack config that works in Hubspot
@@ -8,78 +8,87 @@ tags: ["hubspot", "react", "html", "scss", "webpack", "babel", "javascript"]
 
 <ul class='parts-list'>
   <li>
-    <b>Part 1:</b> Hubspot CMS Boilerplate and Webpack setup
+    <b>Part 1:</b> Hubspot CMS Boilerplate and Webpack setup [YOU ARE HERE]
   </li>
   <li>
-    <b>Part 2:</b> BabelJS and lint your way forward
+    <b>Part 2:</b> BabelJS and lint your way forward [NEXT]
   </li>
   <li>
-    <b>Part 3:</b> SCSS and image optimization
+    <b>Part 3:</b> SCSS and image optimization [WAITING]
   </li>
   <li>
-    <b>Part 4:</b> Critical CSS path (looking for solutions now,
-    <br />
-    please message me if you know of any)
-  </li>
-  <li>
-    <b>Part 6:</b> Open questions
+    <b>Part 4:</b> Critical CSS path [WAITING]
   </li>
 </ul>
 
-<p>If you want to skip all the fun, here's the code for part 1:</p>
-
-```
-https://github.com/emptypockets-dev/hubspot-with-webpack
-```
-
-<h2>Get all the required Hubspot stuff ready</h2>
 <p>
-  Before you continue, you need to already have Node.js, the Hubspot CLI and a
-  developer account.
+  If you want just want to copy a minimal webpack.config.js file jump to the{" "}
+  <a href='https://github.com/emptypockets-dev/hubspot-with-webpack'>
+    Github repo
+  </a>
+  .
 </p>
-<p>Move on when you have all three:</p>
-<ul class='parts-list'>
-  <li>[x] Hubspot CLI</li>
-  <li>[x] Node.js</li>
-  <li>[x] Hubspot developer account</li>
-</ul>
 
-<h2>Just the boilerplate</h2>
+-
+
+<h2>Part One</h2>
+<h3>Just the basics</h3>
 <p>
-  Use the Hubspot CLI to create a new project. Follow the Hubspot docs
-  <a href='https://github.com/HubSpot/cms-theme-boilerplate'>&nbsp;here</a>. Make
-  sure you generally know what's going on, then run this command in Terminal—inside
-  of your project folder.
+  The rest of this post assumes you are comfortable working with Hubspot and
+  probably use npm all the time. Make sure you have the latest version of the
+  Hubspot CLI installed.
 </p>
 
 ```
-hs create website-theme <a-new-cool-project-name>
+npm install -g @hubspot/cli@latest
 ```
 
+-
+
+<h3>Just the boilerplate</h3>
 <p>
-  Then configure the project for local development by running `hs-init` in
-  Terminal and copying + pasting your key when asked.
+  Use the Hubspot CLI to create a new website theme in a local folder. Switch to
+  the
+  <a href='https://github.com/HubSpot/cms-theme-boilerplate'>
+    &nbsp;Hubspot docs
+  </a> if you get stuck at this point.
+</p>
+<p>
+  <em>Note</em>: don't fetch an existing project. Build a new, basic setup and
+  then apply bits of it to your other projects.
 </p>
 
 ```
-hs init
+hs create website-theme <cool-project-name>
 ```
 
 <p>
-  While you're at it, you'll eventually need a package.json file so run `npm
-  init` to create one:
+  Configure your project for local development by running `hs-init` in Terminal.
+  Follow the written instructions (copy + paste your key).
 </p>
 
-```js
+```
+    hs init
+```
+
+<p>
+  While you're at it, you'll eventually need a package.json file—now is a good
+  time to run `npm init` to create one:
+</p>
+
+```
     npm init
 ```
 
-<p>
-  <em>Note</em>: don't fetch an existing project. We're going to upload our new
-  local project to Hubspot.
-</p>
+<p>Initializing a git repo is always a good idea too.</p>
 
-<h2>Install dependencies</h2>
+```
+    git init
+```
+
+-
+
+<h3>Just the dependencies</h3>
 
 ```js
 npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-cms-plugins
@@ -92,14 +101,16 @@ npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-
   <li>[x] @hubspot/webpack-cms-plugins</li>
 </ul>
 
-<h2>Create a webpack.config.js</h2>
+-
+
+<h3>Just a webpack config file</h3>
 <p>
   Hubspot provides an&nbsp;
   <a href='https://www.npmjs.com/package/@hubspot/webpack-cms-plugins'>
     example&nbsp;
   </a>
-  but at the moment it needs some tweaks to support Webpack 5 + the related
-  plugin updates
+  but at the moment it needs some tweaks to support Webpack 5 + recent plugin
+  updates
 </p>
 
 ```js
@@ -116,37 +127,35 @@ module.exports = ({ account, autoupload }) => ({
       account,
       autoupload,
       src: "dist",
-      dest: "theme-with-webpack",
+      dest: "<your-project-folder-in-hubspot-here>",
     }),
     new CopyWebpackPlugin({
       patterns: [
+        { from: "src/theme.json", to: "theme.json" },
+        { from: "src/fields.json", to: "fields.json" },
         { from: "src/css", to: "css" },
         { from: "src/images", to: "images" },
         { from: "src/modules", to: "modules" },
         { from: "src/templates", to: "templates" },
-        { from: "src/theme.json", to: "theme.json" },
-        { from: "src/fields.json", to: "fields.json" },
       ],
     }),
   ],
 });
 ```
 
-<p>
-  The above webpack config is the <em>minimum</em> setup needed for the Hubspot
-  Autoupload plugin to work.
-</p>
+<p>You can do a lot more with webpack but this is just a start.</p>
 
+-
+
+<h3>Just a start</h3>
 <p>
-  Add these scripts to your package.json file so that you don't have to keep
-  typing webpack --watch --mode etc.
+  Add a "start" script in package.json so that you don't have to keep typing
+  webpack --watch --mode etc etc etc.
 </p>
 
 ```
  "scripts": {
-        "start": "webpack --watch --mode development --env autoupload",
-        "build-dev": "webpack --mode development",
-        "build-prod": "webpack --mode production"
+        "start": "webpack --watch --mode development --env account 123 --env autoupload",
     }
 ```
 
@@ -155,24 +164,46 @@ npm start
 ```
 
 <p>
-  Run the start script to kickoff webpack and autoupload. The script runs
-  webpack, watches for changes, sets the mode to development, and passes in a
-  "autoupload" environment variable that defaults to true. The webpack config is
-  also expecting a "account" environment variable but that is automatically
-  passed in via your hubspot.config.yml file so it's not needed (but you can add
-  it if you want).
+  Next, a series of amazing things happen. The following might be too much
+  information at the moment but understanding each step really helps make
+  webpack easy to work with.
 </p>
 
+<ul class='parts-list'>
+  <li>
+    <b>1.</b> Values for "account" and "autoupload" are passed to
+    webpack.config.js.
+  </li>
+  <li>
+    <b>2.</b> Webpack starts to build its dependency graph starting from
+    ./src/index.js
+  </li>
+  <li>
+    <b>3.</b> Webpack creates a folder named /dist (by default) and outputs code
+    into /dist/js/main.js.
+  </li>
+  <li>
+    <b>4.</b> Webpack plugins start to run from the bottom up (in reverse).
+  </li>
+  <li>
+    <b>5.</b> CopyWebpackPlugin copies all /src files into the /dist folder
+  </li>
+  <li>
+    <b>6.</b> HubspotAutouploadPlugin syncs each file that moves through webpack
+    into the Hubspot destination folder that you set.
+  </li>
+  <li>
+    <b>7.</b> Webpack watches for changes. It loops through steps 2 through 6
+    each time a file is saved.
+  </li>
+</ul>
+
+-
+
+<h2>Part Two</h2>
 <p>
-  As you save files in `src`, your `dist/staging` site will automatically update
-  with the latest changes
+  In part 2, we're going to add Babel to transpile cutting-edge Javascript into
+  boring Javascript that browsers understand.
 </p>
 
-<p>In part 2, we're going to add Babel and setup lint.</p>
-
-<h2>Related ideas</h2>
-<p>
-  A way to provide feedback about specific parts of this "guide" would be really
-  helpful. I wonder if I can build a confusing indicator of some sort? Any
-  ideas?
-</p>
+<h3>Just lint</h3>
