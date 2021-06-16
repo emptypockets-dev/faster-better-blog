@@ -1,5 +1,5 @@
 ---
-title: A damn near perfect webpack and hubspot setup (30% version)
+title: Towards a good webpack and hubspot setup (32% version)
 image: ./thumb-2.png
 imageAlt: Webpack Icon
 description: An up-to-date webpack config that works in Hubspot
@@ -174,7 +174,7 @@ npm start
   </li>
   <li>
     <b>2.</b> Webpack starts to build its dependency graph starting from
-    ./src/index.js
+    /src/index.js
   </li>
   <li>
     <b>3.</b> Webpack creates a folder named /dist (by default) and outputs code
@@ -318,4 +318,43 @@ module.exports = ({ account, autoupload }) => ({
 import './scss/main.scss'
 ```
 
-<p>Check back soon for more updates...</p>
+-
+
+<h2>Part 2.1</h2>
+<h3>Just remember Hubspot compiles code too</h3>
+
+<p>
+  If you minimize your CSS code before syncing it with Hubspot then you might
+  run into this hard to discover bug. Take a look at this example:
+</p>
+
+```
+@media (min-width:768px){#global-partial-header nav .about-link{display:block;position:relative;left:-2.4rem;top:-2px}}
+```
+
+<p>
+  The bug: If the first selector in a media query uses an #id, Hubspot thinks it
+  is the first part of a comment. Everything after that line is now commented
+  out.
+</p>
+
+<p>The solution is to wrap your css output in a HubL raw wrapper</p>
+
+```
+npm install --save-dev wrapper-webpack-plugin
+```
+
+```js
+in webpack.config.js
+ plugins: [
+        ...other plugins
+        new WrapperPlugin({
+            test: /\.css$/,
+            header: '{% raw %} \n',
+            footer: '{% endraw %}',
+        }),
+       ...other plugins
+    ],
+```
+
+Check back soon for more updates...
