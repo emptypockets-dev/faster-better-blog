@@ -8,16 +8,19 @@ tags: ["hubspot", "react", "html", "scss", "webpack", "babel", "javascript"]
 
 <ul class='parts-list'>
   <li>
-    <b>Part 1:</b> Hubspot CMS Boilerplate and Webpack setup [YOU ARE HERE]
+    <b>Part 1:</b> Hubspot CMS Boilerplate and Webpack setup
   </li>
   <li>
-    <b>Part 2:</b> BabelJS and lint your way forward [NEXT]
+    <b>Part 2:</b> SCSS to CSS
   </li>
   <li>
-    <b>Part 3:</b> SCSS and image optimization [WAITING]
+    <b>Part 3:</b> Fun Javascript to boring Javascript
   </li>
   <li>
-    <b>Part 4:</b> Critical CSS path [WAITING]
+    <b>Part 4:</b> Critical CSS path
+  </li>
+  <li>
+    <b>Part 5:</b> PNG and SVG optimization
   </li>
 </ul>
 
@@ -94,10 +97,10 @@ npm install --save-dev webpack webpack-cli copy-webpack-plugin @hubspot/webpack-
 ```
 
 <ul class='parts-list'>
-  <li>[x] webpack</li>
-  <li>[x] webpack-cli</li>
-  <li>[x] copy-webpack-plugin</li>
-  <li>[x] @hubspot/webpack-cms-plugins</li>
+  <li>☑️ webpack</li>
+  <li>☑️ webpack-cli</li>
+  <li>☑️ copy-webpack-plugin</li>
+  <li>☑️ @hubspot/webpack-cms-plugins</li>
 </ul>
 
 -
@@ -196,9 +199,114 @@ npm start
 -
 
 <h2>Part Two</h2>
+<h3>Before you begin</h3>
 <p>
-  In part 2, we're going to add Babel to transpile cutting-edge Javascript into
-  boring Javascript that browsers understand.
+  I'm still working on a good SCSS solution that allows for HubL variables and
+  theme setup. Whatever that solution ends up being, the following is a good
+  general setup for transpiling SCSS to CSS.
+</p>
+<p>This solution assumes your SCSS exists in "/src/scss/main.scss".</p>
+<p>
+  As you'll see, some of the options exist just to be 100% sure that the setup
+  is working. First confirm that it works and then start to add more custom
+  options
 </p>
 
-<h3>Just lint</h3>
+<h3>Dependencies</h3>
+
+```
+npm install --save-dev autoprefixer  css-loader mini-css-extract-plugin node-sass postcss-loader sass-loader
+```
+
+<ul class='parts-list'>
+  <li>☑️ css-loader</li>
+  <li>☑️ mini-css-extract-plugin</li>
+  <li>☑️ node-sass</li>
+  <li>☑️ postcss-loader</li>
+  <li>☑️ sass-loader</li>
+</ul>
+
+<h3>Vendor prefixes</h3>
+<p>Update your package.json file to include:</p>
+
+```
+ "browserslist": [
+        "defaults",
+        "last 10 version"
+    ]
+```
+
+<p>
+  The browsers you should include depends on your needs. "last 10 version"
+  exists so that you can compare your SCSS file and generated CSS file to make
+  sure everything is setup correctly.
+</p>
+
+<h3>Webpack config</h3>
+<p>
+  Add MiniCSSExtraPlugin and module: {} to your webpack setup. Remove the CSS
+  path from CopyWebpackPlugin. Here's the whole webpack.config.js updated with
+  what you'll need:
+</p>
+
+```js
+const HubSpotAutoUploadPlugin = require("@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = ({ account, autoupload }) => ({
+  entry: "./src/index.js",
+  output: {
+    filename: "js/main.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { url: false } },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    "autoprefixer",
+                    {
+                      // Options
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+          "sass-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HubSpotAutoUploadPlugin({
+      account,
+      autoupload,
+      src: "dist",
+      dest: "theme-with-webpack",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/images", to: "images" },
+        { from: "src/modules", to: "modules" },
+        { from: "src/templates", to: "templates" },
+        { from: "src/theme.json", to: "theme.json" },
+        { from: "src/fields.json", to: "fields.json" },
+      ],
+    }),
+  ],
+});
+```
+
+<p>Check back soon for more updates...</p>
